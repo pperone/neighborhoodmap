@@ -164,12 +164,10 @@ function initMap() {
     ko.applyBindings(new ViewModel());
 }
 
-// handle map error
 function googleMapsError() {
     alert('An error occurred with Google Maps.');
 }
 
-/* Location Model */
 var LocationMarker = function(locations) {
     var self = this;
 
@@ -184,7 +182,6 @@ var LocationMarker = function(locations) {
     var defaultIcon = makeMarkerIcon();
     var highlightedIcon = makeMarkerIconHighlight();
 
-    // FourSquare info
     var clientID = 'ILHXHJ5VB1R2U55VV5WPHCEZDY5KPTLJQO1ZB3CUSWADPPT2';
     var clientSecret = 'EHB0HMPWVBDVKCRVBFHB3OHBJQY0CPEBFZ3KO3LZFZTFJX1L';
     var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + this.position.lat + ',' + this.position.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20160118' + '&query=' + this.title;
@@ -198,7 +195,6 @@ var LocationMarker = function(locations) {
         alert('An error occurred with FourSquare.');
     });
 
-    // Create a marker per location, and put into markers array
     this.marker = new google.maps.Marker({
         position: this.position,
         title: this.title,
@@ -207,7 +203,7 @@ var LocationMarker = function(locations) {
     });
 
     self.filterMarkers = ko.computed(function () {
-        // set marker and extend bounds (showListings)
+
         if(self.visible() === true) {
             self.marker.setMap(map);
             bounds.extend(self.marker.position);
@@ -228,14 +224,12 @@ var LocationMarker = function(locations) {
         google.maps.event.trigger(self.marker, 'click');
     };
 
-    // creates bounce effect when item selected
     this.bounce = function(place) {
 		google.maps.event.trigger(self.marker, 'click');
 	};
 
 };
 
-/* View Model */
 var ViewModel = function() {
     var self = this;
 
@@ -243,12 +237,10 @@ var ViewModel = function() {
 
     this.mapList = ko.observableArray([]);
 
-    // add location markers for each location
     locations.forEach(function(location) {
         self.mapList.push( new LocationMarker(location) );
     });
 
-    // locations viewed on map
     this.locationList = ko.computed(function() {
         var searchFilter = self.searchItem().toLowerCase();
         if (searchFilter) {
@@ -266,19 +258,17 @@ var ViewModel = function() {
     }, self);
 };
 
-// This function populates the infowindow when the marker is clicked. We'll only allow
-// one infowindow which will open at the marker that is clicked, and populate based
-// on that markers position.
+
 function populateInfoWindow(marker, street, city, phone, infowindow) {
 
     var defaultIcon = makeMarkerIcon();
 
     if (infowindow.marker != marker) {
-        // Clear the infowindow content to give the streetview time to load.
+
         infowindow.setContent('');
         infowindow.marker = marker;
 
-        // Make sure the marker property is cleared if the infowindow is closed.
+
         infowindow.addListener('closeclick', function() {
             marker.setIcon(defaultIcon);
             infowindow.marker = null;
@@ -290,9 +280,6 @@ function populateInfoWindow(marker, street, city, phone, infowindow) {
         var windowContent = '<h4>' + marker.title + '</h4>' +
             '<p>' + street + "<br>" + city + '<br>' + phone + "</p>";
 
-        // In case the status is OK, which means the pano was found, compute the
-        // position of the streetview image, then calculate the heading, then get a
-        // panorama from that and set the options
         var getStreetView = function (data, status) {
             if (status == google.maps.StreetViewStatus.OK) {
                 var nearStreetViewLocation = data.location.latLng;
@@ -312,10 +299,9 @@ function populateInfoWindow(marker, street, city, phone, infowindow) {
                 infowindow.setContent(windowContent + '<div style="color: red">No Street View Found</div>');
             }
         };
-        // Use streetview service to get the closest streetview image within
-        // 50 meters of the markers position
+
         streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-        // Open the infowindow on the correct marker.
+
         infowindow.open(map, marker);
     }
 }
