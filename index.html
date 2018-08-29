@@ -8,18 +8,22 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
-    <div id="floating-panel">
-      <img src="img/logo.png" alt="Northpointe Guide Logo" class="logo"></img>
-      <div id="search">
-        <input class="search-box" id="search-box" data-bind="value: searched, valueUpdate: 'keyup'" placeholder="Filter locations"/>
+    <div id="floating-panel" class="topnav">
+      <a href="javascript:void(0);" id="icon" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+      <img src="img/logo.png" alt="Northpointe Guide Logo" id= "logo" class="logo"></img>
+      <div id="search" class="search">
+        <input class="search-box" id="search-box" data-bind="textInput: searchItem, valueUpdate: 'afterkeydown'" placeholder="Filter locations"/>
       </div>
       <div class="list" id="list">
-  			<ul data-bind="foreach: filteredList">
+  			<ul data-bind="foreach: locationList">
           <li>
-  					<a href="#" data-bind="text: title, click: $parent.showLocation"></a>
+  					<a href="#" data-bind="text: title, click: show"></a>
             <hr>
   				</li>
   			</ul>
@@ -32,6 +36,28 @@
     <script type='text/javascript' src="script/app.js" async defer></script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyC2qF_vGbtLpUEdP56t964Sit19HcEWkHc&callback=initMap">
+    </script>
+    <script>
+    function myFunction() {
+        var panel = document.getElementById("floating-panel");
+        var logo = document.getElementById("logo");
+        var icon = document.getElementById("icon");
+        var search = document.getElementById("search");
+        var list = document.getElementById("list");
+        if (panel.className === "topnav") {
+            panel.className += " responsive";
+            logo.className += " responsive";
+            icon.className += " responsive";
+            search.className += " responsive";
+            list.className += " responsive";
+        } else {
+            panel.className = "topnav";
+            logo.className = "logo";
+            icon.className = "icon";
+            search.className = "search";
+            list.className = "list";
+        }
+    }
     </script>
   </body>
 

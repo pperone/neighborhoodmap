@@ -1,3 +1,119 @@
+@media screen and (min-width: 800px) {
+  .topnav {
+    position: absolute;
+    top: 10px;
+    left:10px;
+    z-index: 5;
+    width: 300px;
+    height:90%;
+    background-color: #333;
+    text-align: center;
+    font-family: 'Montserrat','Roboto','sans-serif';
+    line-height: 30px;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+  }
+
+  .logo {
+    max-width: 100%;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .search {
+    color: #ddd;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+  }
+
+  .list {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .topnav {
+    position: absolute;
+    top: 10px;
+    left:10px;
+    z-index: 5;
+    width: 50px;
+    height:50px;
+    background-color: #333;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+  }
+
+  .topnav.responsive {
+    position: absolute;
+    top: 10px;
+    left:10px;
+    z-index: 5;
+    width: 300px;
+    height:90%;
+    background-color: #333;
+    text-align: center;
+    font-family: 'Montserrat','Roboto','sans-serif';
+    line-height: 30px;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+  }
+
+  .icon {
+    padding-top: 10px;
+    display: block;
+  }
+
+  .icon.responsive {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .logo.responsive {
+    display: inline;
+    max-width: 100%;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .search.responsive {
+    display: inline;
+    color: #ddd;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+  }
+
+  .list {
+    display: none;
+  }
+
+  .list.responsive {
+    display: inline;
+    text-align: center;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -37,35 +153,6 @@ li {
 #map {
   height: 100%;
 }
-#floating-panel {
-  position: absolute;
-  top: 10px;
-  left:10px;
-  z-index: 5;
-  width: 300px;
-  height:90%;
-  background-color: #333;
-  text-align: center;
-  font-family: 'Montserrat','Roboto','sans-serif';
-  line-height: 30px;
-  padding-top: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
-}
-
-.logo {
-  max-width: 100%;
-}
-
-#search {
-  color: #ddd;
-  font-size: 0.5em;
-  text-transform: uppercase;
-  letter-spacing: 3.5px;
-  padding-top: 20px;
-  padding-bottom: 5px;
-}
 
 .search-box {
   border: 0;
@@ -82,10 +169,6 @@ li {
     padding: 10px;
 		font-size: 0.8em;
     list-style-type: none;
-}
-
-#list {
-  text-align: center;
 }
 
 #pano {
