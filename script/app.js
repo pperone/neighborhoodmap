@@ -248,11 +248,13 @@ var ViewModel = function() {
                 var str = location.title.toLowerCase();
                 var result = str.includes(searchFilter);
                 location.visible(result);
+                location.marker.setVisible(result);
 				return result;
 			});
         }
         self.mapList().forEach(function(location) {
             location.visible(true);
+            location.marker.setVisible(location);
         });
         return self.mapList();
     }, self);

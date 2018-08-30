@@ -23,7 +23,7 @@
       <div class="list" id="list">
   			<ul data-bind="foreach: locationList">
           <li>
-  					<a href="#" data-bind="text: title, click: show"></a>
+  					<a href="#" data-bind="text: title, click: show" onclick="myFunction()"></a>
             <hr>
   				</li>
   			</ul>
@@ -35,7 +35,7 @@
     <script src='lib/jquery-3.3.1.min.js'></script>
     <script type='text/javascript' src="script/app.js" async defer></script>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyC2qF_vGbtLpUEdP56t964Sit19HcEWkHc&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyC2qF_vGbtLpUEdP56t964Sit19HcEWkHc&callback=initMap" onerror="mapErrorHandling()">
     </script>
     <script>
     function myFunction() {
