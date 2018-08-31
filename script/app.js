@@ -238,7 +238,7 @@ var ViewModel = function() {
     this.mapList = ko.observableArray([]);
 
     locations.forEach(function(location) {
-        self.mapList.push( new LocationMarker(location) );
+        self.mapList.push(new LocationMarker(location));
     });
 
     this.locationList = ko.computed(function() {
@@ -248,13 +248,11 @@ var ViewModel = function() {
                 var str = location.title.toLowerCase();
                 var result = str.includes(searchFilter);
                 location.visible(result);
-                location.marker.setVisible(result);
 				return result;
 			});
         }
         self.mapList().forEach(function(location) {
             location.visible(true);
-            location.marker.setVisible(location);
         });
         return self.mapList();
     }, self);
@@ -264,6 +262,8 @@ var ViewModel = function() {
 function populateInfoWindow(marker, street, city, phone, infowindow) {
 
     var defaultIcon = makeMarkerIcon();
+    var fsID = 'ILHXHJ5VB1R2U55VV5WPHCEZDY5KPTLJQO1ZB3CUSWADPPT2';
+    var fsSecret = 'EHB0HMPWVBDVKCRVBFHB3OHBJQY0CPEBFZ3KO3LZFZTFJX1L';
 
     if (infowindow.marker != marker) {
 
@@ -287,7 +287,7 @@ function populateInfoWindow(marker, street, city, phone, infowindow) {
                 var nearStreetViewLocation = data.location.latLng;
                 var heading = google.maps.geometry.spherical.computeHeading(
                     nearStreetViewLocation, marker.position);
-                infowindow.setContent(windowContent + '<div id="pano"></div>');
+                infowindow.setContent(windowContent + '<div id="pano"></div><br><div id="fslogo"><a href="https://www.foursquare.com/"><img src="img/powered-by-foursquare-grey.png" id="fsimg"></img></a></div>');
                 var panoramaOptions = {
                     position: nearStreetViewLocation,
                     pov: {
@@ -297,13 +297,13 @@ function populateInfoWindow(marker, street, city, phone, infowindow) {
                 };
                 var panorama = new google.maps.StreetViewPanorama(
                     document.getElementById('pano'), panoramaOptions);
+
             } else {
                 infowindow.setContent(windowContent + '<div style="color: red">No Street View Found</div>');
             }
         };
 
         streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-
         infowindow.open(map, marker);
     }
 }

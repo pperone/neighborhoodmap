@@ -174,12 +174,23 @@ li {
 }
 
 #pano {
-  min-width: 300px;
+  min-width: 200px;
+  max-height: 200px;
   height: 300px;
+  display: block;
 }
 
 #window-title {
   font-size: 2em;
+}
+
+#fslogo {
+  display: block;
+  max-width: 100%;
+}
+
+#fsimg {
+  max-width: 100px;
 }
 
 ::-webkit-scrollbar {
