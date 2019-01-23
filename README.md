@@ -5,5 +5,5 @@ A guide to the businesses in the north Spokane neighborhood. This interactive ma
 This project was created for Udacity's Fullstack Nanodegree. It was developed using Knockout.js and GoogleMaps APIs, aside from HTML and CSS.
 
 ## Access
-The app can be accessed [here](www.pedroperone.com/neighborhoodmap).
+The app can be accessed [here](http://www.pedroperone.com/neighborhoodmap).
 
